@@ -2,8 +2,28 @@
 <div class="container">
   <div class="row">
     <div class="col-10 offset-1">
+      <h1>Posts</h1>
+      <div class="text-right">
+        <%= link_to "Create post", new_post_path, class: "btn btn-outline-danger" %>
+      </div>
+      <hr>
       <% @posts.each do |post| %>
-
+        <div class="post-container">
+          <div class="post-title">
+            <h2><%= link_to post.title, post, class: "post-title-link" %></h2>
+          </div>
+          <small class="post-info">
+            Published at: <%= post.created_at %>
+          </small>
+          <div class="post-intro">
+            <%= post.body %>
+            <div class="delete-edit">
+              <span><%= link_to "Edit &#9998;".html_safe, edit_post_path(post) %></span>
+              <span><%= link_to "Delete &#128465;".html_safe, post, method: :delete, data: { confirm: "Are you sure to delete this post?" } %></span>
+            </div>
+          </div>
+        </div>
+        <hr>
       <% end %>
     </div>
   </div>

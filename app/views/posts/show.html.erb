@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1><%= @post.title %></h1>
+      <div class="body">
+        <% renderer = Redcarpet::Render::HTML.new %>
+        <% markdown = Redcarpet::Markdown.new(renderer, extensions = {}) %>
+        <%= markdown.render(@post.body).html_safe%>
+      </div>
+
+      <div class="post-comments">
+        <h2 class="comments-title">Comments</h2>
+
+      </div>
+    </div>
+  </div>
+</div>
