@@ -1,7 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h1><%= @post.title %></h1>
+    <div class="col-10 offset-1">
+      <div class="text-right">
+        <%= link_to "Go home ←", root_path, class: "btn btn-outline-danger"%>
+      </div>
+      <h1 class="post-title-show"><%= @post.title %></h1>
+      <div class="text-center">
+        <small>By: PABLO, on: <%= @post.created_at%></small>
+      </div>
+      <div class="delete-edit text-center">
+        <small><%= link_to "Edit &#9998;".html_safe, edit_post_path(@post) %></small>
+        <small><%= link_to "Delete &#128465;".html_safe, @post, method: :delete, data: { confirm: "Are you sure to delete this post?" } %></small>
+      </div>
+
       <div class="body">
         <% renderer = Redcarpet::Render::HTML.new %>
         <% markdown = Redcarpet::Markdown.new(renderer, extensions = {}) %>
@@ -11,6 +22,10 @@
       <div class="post-comments">
         <h2 class="comments-title">Comments</h2>
 
+      </div>
+
+      <div class="text-right">
+        <%= link_to "Go home ←", root_path, class: "btn btn-outline-danger"%>
       </div>
     </div>
   </div>
