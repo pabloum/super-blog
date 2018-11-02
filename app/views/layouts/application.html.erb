@@ -10,8 +10,44 @@
   </head>
 
   <body>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-danger" %>
-    <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-danger" %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">Super Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <%= form_tag posts_path, class: "form-inline" ,method: :get do %>
+            <%= text_field_tag :concept, params[:concept], class: "form-control mr-sm-2", placeholder: "Keyword" %>
+            <%= submit_tag "Search", name: nil, class: "btn btn-outline-danger my-2 my-sm-0 btn-md" %>
+          <% end %>
+
+          <ul class="navbar-nav ml-auto">
+            <% if signed_in? %>
+              <li class="nav-item">
+                <div class="btn btn-outline-danger end-btns" id="greeting-btn" >
+                  Hello, <%= current_user.name %>
+                </div>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Logout",  destroy_user_session_path, class: "btn btn-outline-danger", method: :delete %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-danger" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-danger" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <%= yield %>
+
   </body>
 </html>
