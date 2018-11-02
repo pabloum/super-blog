@@ -7,7 +7,7 @@
 #  updated_at :datetime         not null
 #  title      :string
 #  body       :text
-#  user       :reference
+#  user_id    :integer
 #
 
 require 'test_helper'
