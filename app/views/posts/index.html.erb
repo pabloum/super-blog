@@ -20,7 +20,7 @@
           <div class="post-intro">
             <%= post.body %>
             <div class="delete-edit">
-              <% if signed_in? %>
+              <% if signed_in? && current_user == post.user%>
                 <span><%= link_to "Edit &#9998;".html_safe, edit_post_path(post) %></span>
                 <span><%= link_to "Delete &#128465;".html_safe, post, method: :delete, data: { confirm: "Are you sure to delete this post?" } %></span>
               <% end %>
