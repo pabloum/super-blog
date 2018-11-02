@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
+  before_action :private_access, except: [:index, :show]
 
   def index
     @posts = Post.all
     if params[:concept].present?
-      @posts = @posts.where("title LIKE ? OR description LIKE ?", "%#{params[:concept]}%", "%#{params[:concept]}%")
+      @posts = @posts.where("title LIKE ? OR body LIKE ?", "%#{params[:concept]}%", "%#{params[:concept]}%")
     end
   end
 

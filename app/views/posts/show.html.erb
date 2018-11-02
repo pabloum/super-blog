@@ -8,10 +8,12 @@
       <div class="text-center">
         <small>By: PABLO, on: <%= @post.created_at%></small>
       </div>
+      <% if signed_in? && current_user == @post.user%>
       <div class="delete-edit text-center">
         <small><%= link_to "Edit &#9998;".html_safe, edit_post_path(@post) %></small>
         <small><%= link_to "Delete &#128465;".html_safe, @post, method: :delete, data: { confirm: "Are you sure to delete this post?" } %></small>
       </div>
+      <% end %>
 
       <div class="body">
         <% renderer = Redcarpet::Render::HTML.new %>

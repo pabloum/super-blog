@@ -7,9 +7,12 @@
 #  updated_at :datetime         not null
 #  title      :string
 #  body       :text
+#  user       :reference
 #
 
 class Post < ApplicationRecord
   validates :title, presence: true
   validates :body,  presence: true
+
+  belongs_to :user
 end
