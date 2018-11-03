@@ -24,6 +24,16 @@
       <div class="post-comments">
         <h2 class="comments-title">Comments</h2>
 
+        <% if @comment && @comment.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+          <% @comment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+
         <div class="comments">
           <% @post.comments.each do |comment| %>
             <div class="card bg-light">

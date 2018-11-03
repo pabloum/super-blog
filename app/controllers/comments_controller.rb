@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
   def create
-    product = Post.find(params[:post_id])
-    product.comments.create(comments_params)
+    @post = Post.find(params[:post_id])
+    @post.comments.create(comments_params)
+    @comment = @post.comments.last
 
-    redirect_to product
+    render :template => 'posts/show'
+    # redirect_to post
   end
 
   private
