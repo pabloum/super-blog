@@ -24,7 +24,34 @@
       <div class="post-comments">
         <h2 class="comments-title">Comments</h2>
 
-        
+        <div class="comments">
+          <% @post.comments.each do |comment| %>
+            <div class="card bg-light">
+              <div class="card-header">By: <strong><%= comment.user.name %></strong> at <%=comment.user.created_at%></div>
+              <div class="card-body"><%= comment.body %></div>
+            </div>
+          <% end %>
+
+          <% if signed_in? %>
+            <br>
+            <h4>Comment this post: </h4>
+            <% if params[:error_comment] %>
+              <div class="alert alert-danger">
+                <ul>
+                  <li><%= params[:error_comment] %></li>
+                </ul>
+              </div>
+            <% end %>
+            <%= form_for [@post, @post.comments.build] do |f| %>
+              <div class="form-group">
+                <%= f.text_area :body, class: "form-control", placeholder: "Add comment" %>
+              </div>
+              <div class="actions text-right">
+                <%= f.submit "Comment", class: "btn btn-danger" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
 
       </div>
 
