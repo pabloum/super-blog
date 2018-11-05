@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     if params[:concept].present?
-      @posts = @posts.where("title LIKE ? OR body LIKE ?", "%#{params[:concept]}%", "%#{params[:concept]}%")
+      @posts = @posts.where("title ILIKE ? OR body ILIKE ?", "%#{params[:concept]}%", "%#{params[:concept]}%")
     end
   end
 
