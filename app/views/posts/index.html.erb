@@ -18,7 +18,7 @@
             Published at: <%= post.created_at %>
           </small>
           <div class="post-intro">
-            <%= post.body %>
+            <%= post.body[0..249] %>...
             <div class="delete-edit">
               <% if signed_in? && current_user == post.user%>
                 <span><%= link_to "Edit &#9998;".html_safe, edit_post_path(post) %></span>
