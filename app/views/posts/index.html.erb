@@ -15,7 +15,7 @@
             <h2><%= link_to post.title, post, class: "post-title-link" %></h2>
           </div>
           <small class="post-info">
-            Published at: <%= post.created_at %>
+            Published: <%= time_ago_in_words(post.created_at) %> ago
           </small>
           <div class="post-intro">
             <%= post.body[0..249] %>...
