@@ -48,10 +48,17 @@
     </nav>
 
     <% if flash[:notice] %>
-      <div class="alert alert-warning">
+      <div class="alert alert-danger">
         <%= flash[:notice] %>
       </div>
     <% end %>
+
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= content_tag(:div, flash[:alert], :id => "flash_alert")%>
+      </div>
+    <% end %>
+
 
     <%= yield %>
 
